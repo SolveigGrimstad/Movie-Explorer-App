@@ -1,25 +1,26 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Movie from "./Movie";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
+import { Searchbar } from "react-native-paper";
 
-interface IMovie {
-  Title: String;
-  Year: String;
-  Released: String;
-  Runtime: String;
-  Genre: String;
-  Director: String;
-  Actors: String;
-  Plot: String;
-  Language: String;
-  Country: String;
-  Poster: String;
-  Ratings: String;
-  starRating: Number;
-  _id: String;
+export interface IMovie {
+  Title: string;
+  Year: string;
+  Released: string;
+  Runtime: string;
+  Genre: string;
+  Director: string;
+  Actors: string;
+  Plot: string;
+  Language: string;
+  Country: string;
+  Poster: string;
+  Ratings: string;
+  starRating: number;
+  _id: string;
 }
 
 function Movies() {
@@ -29,6 +30,7 @@ function Movies() {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("Ratings");
   const filters: string[] = useSelector((state: AppState) => state.filter);
+  const onChangeSearch = (query: string) => setTitle(query);
   const initiateSearch = (e: any) => {
     setTitle(e.target.value);
     setPage(1);
@@ -60,7 +62,7 @@ function Movies() {
         filters +
         "&sort=" +
         sort;
-      console.log(api_url);
+
       //http://it2810-42.idi.ntnu.no:8000/api/movies/Ratings/1/?title=&filter=&sort=Ratings
 
       await axios.get(api_url, { params }).then((response) => {
@@ -72,25 +74,31 @@ function Movies() {
   // the variables thats going to change when the useEffect is called
 
   return (
-    <ScrollView>
-      {movies.map((movie) => {
-        console.log(movie);
-        return (
-          <Movie
-            title={movie.Title}
-            imageUrl={movie.Poster}
-            actors={movie.Actors}
-            rating={movie.Ratings}
-            summary={movie.Plot}
-            runtime={movie.Runtime}
-            year={movie.Year}
-            starRating={movie.starRating}
-            id={movie._id}
-          />
-        );
-      })}
-    </ScrollView>
+    <View>
+      <Searchbar
+        placeholder=" search for movies"
+        onChangeText={onChangeSearch}
+        value={title}
+      />
+      <FlatList
+        data={movies}
+        keyExtractor={(item, _) => item._id}
+        contentContainerStyle={styles.movieContainer}
+        numColumns={2}
+        renderItem={({ item }) => <Movie data={item} />}
+      >
+        <Searchbar
+          placeholder=" search for movies"
+          onChangeText={onChangeSearch}
+          value={title}
+        />
+      </FlatList>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  movieContainer: {},
+});
 
 export default Movies;
