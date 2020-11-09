@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Movie from "./Movie";
@@ -55,7 +55,13 @@ function Movies() {
         "/" +
         page +
         "/?title=" +
-        title;
+        title +
+        "&filter=" +
+        filters +
+        "&sort=" +
+        sort;
+      console.log(api_url);
+      //http://it2810-42.idi.ntnu.no:8000/api/movies/Ratings/1/?title=&filter=&sort=Ratings
 
       await axios.get(api_url, { params }).then((response) => {
         setMovies(response.data.DATA);
@@ -64,22 +70,26 @@ function Movies() {
     getMovies();
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
+
   return (
-    <View>
+    <ScrollView>
       {movies.map((movie) => {
-        <Movie
-          title={movie.Title}
-          imageUrl={movie.Poster}
-          actors={movie.Actors}
-          rating={movie.Ratings}
-          summary={movie.Plot}
-          runtime={movie.Runtime}
-          year={movie.Year}
-          starRating={movie.starRating}
-          id={movie._id}
-        />;
+        console.log(movie);
+        return (
+          <Movie
+            title={movie.Title}
+            imageUrl={movie.Poster}
+            actors={movie.Actors}
+            rating={movie.Ratings}
+            summary={movie.Plot}
+            runtime={movie.Runtime}
+            year={movie.Year}
+            starRating={movie.starRating}
+            id={movie._id}
+          />
+        );
       })}
-    </View>
+    </ScrollView>
   );
 }
 

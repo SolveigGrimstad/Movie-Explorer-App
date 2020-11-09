@@ -1,5 +1,5 @@
-import { createStore, combineReducers, Store } from "redux";
 import filterReducer from "../store/updateGenreFilter";
+import { createStore, combineReducers, Store } from "redux";
 
 export type AppState = {
   filter: string[];
