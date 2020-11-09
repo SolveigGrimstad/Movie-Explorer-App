@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, TextInput} from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Movie from "./Movie";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
+import { Searchbar} from "react-native-paper"; 
 
 interface IMovie {
   Title: String;
@@ -29,6 +30,7 @@ function Movies() {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("Ratings");
   const filters: string[] = useSelector((state: AppState) => state.filter);
+  const onChangeSearch = (query:string) => setTitle(query); 
   const initiateSearch = (e: any) => {
     setTitle(e.target.value);
     setPage(1);
@@ -71,8 +73,12 @@ function Movies() {
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
 
+
   return (
+    
     <ScrollView>
+      <Searchbar placeholder=" search for movies" onChangeText={onChangeSearch} value={title}/>
+     
       {movies.map((movie) => {
         console.log(movie);
         return (
