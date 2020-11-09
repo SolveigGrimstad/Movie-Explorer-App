@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import axios from "axios";
 import HomeScreen from "./HomeScreen";
 import Movies from "./Movies";
 import MovieInfo from "./MovieInfo";
+import { useSelector } from "react-redux";
+import { AppState } from "../store/store";
 
 type RootStackParamList = {
   Home: undefined;

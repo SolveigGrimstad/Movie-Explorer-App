@@ -2,9 +2,15 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Routes from "./src/routes";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 export default function App() {
-  return <Routes />;
+  return (
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  );
 }
 
 const styles = StyleSheet.create({
