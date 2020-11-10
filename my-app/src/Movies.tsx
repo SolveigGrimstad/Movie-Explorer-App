@@ -5,6 +5,7 @@ import Movie from "./Movie";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Searchbar } from "react-native-paper";
+import { AntDesign } from "@expo/vector-icons";
 
 export interface IMovie {
   Title: string;
@@ -86,13 +87,7 @@ function Movies() {
         contentContainerStyle={styles.movieContainer}
         numColumns={2}
         renderItem={({ item }) => <Movie data={item} />}
-      >
-        <Searchbar
-          placeholder=" search for movies"
-          onChangeText={onChangeSearch}
-          value={title}
-        />
-      </FlatList>
+      ></FlatList>
     </View>
   );
 }
