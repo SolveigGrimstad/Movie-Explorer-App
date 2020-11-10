@@ -2,10 +2,18 @@ import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Movie from "./Movie";
+import FilterModal from "./FilterModal";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Searchbar } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { TapGestureHandler } from "react-native-gesture-handler";
+import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
+//import {Filternav} from "./filternav";
+import { red100 } from "react-native-paper/lib/typescript/src/styles/colors";
+
+//import { Provider } from "react-native-paper/lib/typescript/src/core/settings";
 
 export interface IMovie {
   Title: string;
@@ -25,6 +33,10 @@ export interface IMovie {
 }
 
 function Movies() {
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [open, setOpen] = useState(false); //opens the filter bar
   const [title, setTitle] = useState<string>(""); //searching
@@ -81,18 +93,46 @@ function Movies() {
         onChangeText={onChangeSearch}
         value={title}
       />
+      <MaterialIcons
+        name="movie-filter"
+        size={40}
+        color="#7e57c2"
+        style={styles.modalToggle}
+        onPress={showModal}
+      />
       <FlatList
         data={movies}
         keyExtractor={(item, _) => item._id}
         contentContainerStyle={styles.movieContainer}
         numColumns={2}
         renderItem={({ item }) => <Movie data={item} />}
-      ></FlatList>
+      />
+      <Provider>
+        <Portal>
+          <Modal
+            visible={visible}
+            onDismiss={hideModal}
+            contentContainerStyle={styles.containerStyle}
+          >
+            <FilterModal />
+          </Modal>
+        </Portal>
+      </Provider>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  modalToggle: {},
+
+  containerStyle: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 15,
+    height: 500,
+    color: "white",
+  },
+  containerContent: {},
   movieContainer: {},
 });
 
