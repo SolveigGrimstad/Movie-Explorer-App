@@ -12,31 +12,41 @@ class BackgroundCarousel extends React.Component{
             selectedIndex :0
         }
     }
+    setSelectedIndex = (event:any) =>{
+        //width of the viewSize 
+        const viewSize = event.nativeEvent.layoutMeasurement.width;
+        //gets current position of the scrollview 
+        const contentOffset = event.nativeEvent.contentOffset.x; 
+
+        const selectedIndex = Math.floor(contentOffset/ viewSize)
+        this.setState({selectedIndex});
+    }
     render(){
         const {images} = this.props
         const {selectedIndex} = this.state
         return(
             <View style={{height: '100%' , width:'100%'}}>
-                <ScrollView horizontal pagingEnabled>
-                    {images.map(image => (
-                        <Image
-                            key={image}
-                            source={{uri:image}}
-                            style={styles.backgroundImage}
-                        />
+                <ScrollView horizontal pagingEnabled onMomentumScrollEnd={this.setSelectedIndex}>
+                 
+                        {images.map((image:any) => (
+                            <Image
+                                key={image}
+                                source={{uri:image}}
+                                style={styles.backgroundImage}
+                            />
 
-                    ))}
-                
+                        ))}
+                </ScrollView>
                 <View style = {styles.circleDiv}>
-                    {images.map((image, i) =>(
+                    {images.map((image:any, i:any) =>(
                         <View 
                         key ={image}
-                        style = {[styles.whiteCircle]}
+                        style = {[styles.whiteCircle, {opacity: i === selectedIndex ? 0.5 : 1}]}
                         />
                     ))}
                  
                 </View>
-                </ScrollView>
+                
             </View>
         )
     }
@@ -44,9 +54,9 @@ class BackgroundCarousel extends React.Component{
 
 const styles = StyleSheet.create({
     backgroundImage: {
-        height: 150,
+        height: "100%",
         width: DEVICE_WIDTH, 
-        backgroundColor: "yellow"
+        
     },
     circleDiv: {
         position: "absolute", 
