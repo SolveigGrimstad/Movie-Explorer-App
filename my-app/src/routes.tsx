@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import axios from "axios";
 import HomeScreen from "./HomeScreen";
@@ -18,6 +18,7 @@ type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const Routes = () => {
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>

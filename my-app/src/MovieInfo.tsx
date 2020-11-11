@@ -4,6 +4,7 @@ import { NavigationContainer, useRoute } from "@react-navigation/native";
 import { IMovie } from "./Movies";
 import { Avatar, Card, Button, Title, Paragraph } from "react-native-paper";
 
+
 function MovieInfo() {
   const movie = useRoute().params as IMovie;
 
