@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 
 type RootStackParamList = {
-  Home: undefined;
+  MovieSelector: undefined;
   Movies: undefined;
   MovieInfo: undefined;
 };
@@ -23,7 +23,7 @@ const Routes = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name="MovieSelector"
           component={HomeScreen}
           options={{
             headerTintColor: "#ffffff",

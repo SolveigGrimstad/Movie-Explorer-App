@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
+import { StyleSheet, Text, View, ScrollView, FlatList} from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Movie from "./Movie";
@@ -14,6 +14,7 @@ import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
 import { red100 } from "react-native-paper/lib/typescript/src/styles/colors";
 
 //import { Provider } from "react-native-paper/lib/typescript/src/core/settings";
+//import ModalDropdown from 'react-native-modal-dropdown';
 
 export interface IMovie {
   Title: string;
@@ -54,6 +55,10 @@ function Movies() {
     setPage(1);
     //sets the page to be page nr 1, when user sort
   };
+
+  const click = () =>{
+    alert('clicked')
+  }
   //console.log(filters);
   const params = new URLSearchParams([
     ["filter", filters.join()],
@@ -86,8 +91,10 @@ function Movies() {
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
 
+//<ModalDropdown options={['option 1', 'option 2']}/>
   return (
     <View>
+      
       <Searchbar
         placeholder=" search for movies"
         onChangeText={onChangeSearch}

@@ -23,6 +23,7 @@ function FilterComponent() {
   const [checked7, setChecked7] = React.useState(false);
   const [checked8, setChecked8] = React.useState(false);
   const [checked9, setChecked9] = React.useState(false);
+  const [checked10, setChecked10] = React.useState(false);
 
   const dispatch = useDispatch();
 
@@ -125,10 +126,10 @@ function FilterComponent() {
         <CheckBox
           style={{ flex: 1, padding: 10 }}
           onClick={() => {
-            setChecked9(!checked9);
+            setChecked10(!checked10);
             dispatch(updateGenreFilter("Horror"));
           }}
-          isChecked={checked9}
+          isChecked={checked10}
           rightText={"Sport"}
         />
       </View>
