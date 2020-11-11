@@ -5,9 +5,10 @@ import SortComponent from "./SortComponent";
 import FilterComponent from "./FilterComponent";
 
 function FilterModal() {
-  const [filterOpen, setFilterOpen] = useState(true);
   const [sortOpen, setSortOpen] = useState(true);
-  const [checked, setChecked] = React.useState(true);
+  const [visible, setVisible] = React.useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
 
   return (
     <View style={styles.containerStyle}>
@@ -40,7 +41,7 @@ function FilterModal() {
         <Button
           style={[{ backgroundColor: "#b39ddb" }]}
           mode="contained"
-          onPress={() => setFilterOpen(true)}
+          onPress={showModal}
         >
           Søk
         </Button>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, FlatList} from "react-native";
+import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Movie from "./Movie";
@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Searchbar } from "react-native-paper";
 import { AntDesign } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TapGestureHandler } from "react-native-gesture-handler";
 import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
@@ -56,9 +57,9 @@ function Movies() {
     //sets the page to be page nr 1, when user sort
   };
 
-  const click = () =>{
-    alert('clicked')
-  }
+  const click = () => {
+    alert("clicked");
+  };
   //console.log(filters);
   const params = new URLSearchParams([
     ["filter", filters.join()],
@@ -91,30 +92,39 @@ function Movies() {
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
 
-//<ModalDropdown options={['option 1', 'option 2']}/>
+  //<ModalDropdown options={['option 1', 'option 2']}/>
   return (
-    <View>
-      
-      <Searchbar
-        placeholder=" search for movies"
-        onChangeText={onChangeSearch}
-        value={title}
-      />
-      <MaterialIcons
-        name="movie-filter"
-        size={40}
-        color="#7e57c2"
-        style={styles.modalToggle}
-        onPress={showModal}
-      />
-      <FlatList
-        data={movies}
-        keyExtractor={(item, _) => item._id}
-        contentContainerStyle={styles.movieContainer}
-        numColumns={2}
-        renderItem={({ item }) => <Movie data={item} />}
-      />
-      <Provider>
+    <Provider>
+      <View>
+        <Searchbar
+          placeholder=" search for movies"
+          onChangeText={onChangeSearch}
+          value={title}
+        />
+        <MaterialIcons
+          name="movie-filter"
+          size={40}
+          color="#7e57c2"
+          style={styles.modalToggle}
+          onPress={showModal}
+        />
+        <View style={styles.pagination}>
+          <AntDesign name="left" size={24} color="black" />
+          <Entypo name="dots-three-horizontal" size={24} color="black" />
+          <AntDesign
+            name="right"
+            size={24}
+            color="black"
+            onClick={() => setPage(page + 1)}
+          />
+        </View>
+        <FlatList
+          data={movies}
+          keyExtractor={(item, _) => item._id}
+          contentContainerStyle={styles.movieContainer}
+          numColumns={2}
+          renderItem={({ item }) => <Movie data={item} />}
+        />
         <Portal>
           <Modal
             visible={visible}
@@ -124,8 +134,8 @@ function Movies() {
             <FilterModal />
           </Modal>
         </Portal>
-      </Provider>
-    </View>
+      </View>
+    </Provider>
   );
 }
 
@@ -137,10 +147,13 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 15,
     height: 500,
-    
   },
   containerContent: {},
   movieContainer: {},
+  pagination: {
+    alignSelf: "center",
+    flexDirection: "row",
+  },
 });
 
 export default Movies;
