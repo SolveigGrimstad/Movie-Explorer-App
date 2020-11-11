@@ -1,23 +1,34 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { NavigationContainer, useRoute } from "@react-navigation/native";
 import { IMovie } from "./Movies";
 import { Avatar, Card, Button, Title, Paragraph } from "react-native-paper";
-
+import { Entypo } from "@expo/vector-icons";
 
 function MovieInfo() {
   const movie = useRoute().params as IMovie;
 
   return (
-    <Card style={styles.card}>
-      <Card.Content>
-        <Title>{movie.Title}</Title>
-        <Paragraph>{movie.Year}</Paragraph>
-      </Card.Content>
-      <Card.Cover style={styles.cardImage} source={{ uri: movie.Poster }} />
+    <ScrollView>
+      <Card style={styles.card}>
+        <Card.Content>
+          <Title>{movie.Title}</Title>
+          <Paragraph>
+            {movie.Year}
+            {"\n"}
+          </Paragraph>
+          <Card.Cover style={styles.cardImage} source={{ uri: movie.Poster }} />
+          <Text>
+            {movie.Ratings} <Entypo name="star" size={24} color="#ffca28" />
+          </Text>
 
-      <Text>{movie.Plot}</Text>
-    </Card>
+          <Text>
+            {"\n"}
+            {movie.Plot}
+          </Text>
+        </Card.Content>
+      </Card>
+    </ScrollView>
   );
 }
 

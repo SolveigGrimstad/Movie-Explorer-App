@@ -109,13 +109,20 @@ function Movies() {
           onPress={showModal}
         />
         <View style={styles.pagination}>
-          <AntDesign name="left" size={24} color="black" />
-          <Entypo name="dots-three-horizontal" size={24} color="black" />
+          <AntDesign
+            name="left"
+            size={24}
+            color="black"
+            onPress={() => setPage(page - 1)}
+          />
+
+          <Entypo name="dot-single" size={24} color="black" />
+
           <AntDesign
             name="right"
             size={24}
             color="black"
-            onClick={() => setPage(page + 1)}
+            onPress={() => setPage(page + 1)}
           />
         </View>
         <FlatList
