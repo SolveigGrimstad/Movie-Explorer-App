@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, ScrollView, View } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { IMovie } from "./Movies";
-import { Card, Title, Paragraph, Divider } from "react-native-paper";
+import { Card, Title, Paragraph } from "react-native-paper";
 import { Entypo } from "@expo/vector-icons";
 import axios from "axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Divider } from "react-native-elements";
+//import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function MovieInfo(props: any) {
   const movie = useRoute().params as IMovie;
@@ -30,7 +31,7 @@ function MovieInfo(props: any) {
     }
   };
 
-c  return (
+  return (
     <ScrollView>
       <Card style={styles.card}>
         <Card.Content>

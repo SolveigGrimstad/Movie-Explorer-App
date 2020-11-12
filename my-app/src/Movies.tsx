@@ -6,14 +6,8 @@ import FilterModal from "./FilterModal";
 import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Searchbar } from "react-native-paper";
-import { AntDesign } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { TapGestureHandler } from "react-native-gesture-handler";
+import { Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
-
-import { red100 } from "react-native-paper/lib/typescript/src/styles/colors";
-
 //import { Provider } from "react-native-paper/lib/typescript/src/core/settings";
 //import ModalDropdown from 'react-native-modal-dropdown';
 
@@ -40,10 +34,15 @@ function Movies() {
   const hideModal = () => setVisible(false);
 
   const [movies, setMovies] = useState<IMovie[]>([]);
+  const [open, setOpen] = useState(false); //opens the filter bar
   const [title, setTitle] = useState<string>(""); //searching
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("Ratings");
   const filters: string[] = useSelector((state: AppState) => state.filter);
+  const onChangeSearch = (query: string) => {
+    setTitle(query);
+    setPage(1);
+  };
   const initiateSearch = (e: any) => {
     setTitle(e.target.value);
     setPage(1);
@@ -55,11 +54,19 @@ function Movies() {
     //sets the page to be page nr 1, when user sort
   };
 
+  const click = () => {
+    alert("clicked");
+  };
+  //console.log(filters);
   const params = new URLSearchParams([
     ["filter", filters.join()],
     ["sort", sort],
   ]);
   //list of comma in filters
+
+  useEffect(() => {
+    setPage(1);
+  }, [filters]);
 
   useEffect(() => {
     // gets all the movies. Title is if the user search for something. If now, shows all the movies
@@ -86,59 +93,61 @@ function Movies() {
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
 
+  //<ModalDropdown options={['option 1', 'option 2']}/>
   return (
     <Provider>
-      <View>
-        <View style={styles.searchContainer}>
-          <Searchbar
-            placeholder="Search for movies"
-            onChangeText={initiateSearch}
-            value={title}
-            style={styles.searchBar}
-          ></Searchbar>
-          <MaterialIcons
-            name="filter-list"
-            size={30}
-            color="#7e57c2"
-            style={styles.modalToggle}
-            onPress={showModal}
-          />
-        </View>
+      <View style={styles.searchContainer}>
+        <Searchbar
+          placeholder="Search for movies"
+          onChangeText={onChangeSearch}
+          value={title}
+          style={styles.searchBar}
+        ></Searchbar>
+        <MaterialIcons
+          name="filter-list"
+          size={30}
+          color="#7e57c2"
+          style={styles.modalToggle}
+          onPress={showModal}
+        />
+      </View>
 
-        <View style={styles.pagination}>
-          <AntDesign
-            name="left"
-            size={24}
-            color="black"
-            onPress={() => setPage(page - 1)}
-          />
+      <View style={styles.pagination}>
+        <AntDesign
+          name="left"
+          size={24}
+          color="black"
+          onPress={() => setPage(page - 1)}
+        />
 
-          <Entypo name="dot-single" size={24} color="black" />
+        <Entypo name="dot-single" size={24} color="black" />
 
-          <AntDesign
-            name="right"
-            size={24}
-            color="black"
-            onPress={() => setPage(page + 1)}
-          />
-        </View>
+        <AntDesign
+          name="right"
+          size={24}
+          color="black"
+          onPress={() => setPage(page + 1)}
+        />
+      </View>
+      <View style={styles.movieContainer}>
         <FlatList
           data={movies}
           keyExtractor={(item, _) => item._id}
-          contentContainerStyle={styles.movieContainer}
+          //contentContainerStyle={styles.movieContainer}
           numColumns={2}
           renderItem={({ item }) => <Movie data={item} />}
         />
-        <Portal>
-          <Modal
-            visible={visible}
-            onDismiss={hideModal}
-            contentContainerStyle={styles.containerStyle}
-          >
-            <FilterModal />
-          </Modal>
-        </Portal>
       </View>
+
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={styles.containerStyle}
+        >
+          <FilterModal />
+        </Modal>
+      </Portal>
     </Provider>
   );
 }
@@ -147,24 +156,27 @@ const styles = StyleSheet.create({
   modalToggle: {
     marginTop: 20,
   },
-
   containerStyle: {
     backgroundColor: "white",
-    padding: 20,
-    borderRadius: 15,
-    height: 500,
+    width: "auto",
+    height: "85%",
+    borderRadius: 10,
+    padding: 10,
   },
   containerContent: {},
-  movieContainer: {},
+  movieContainer: {
+    width: "100%",
+  },
   pagination: {
     alignSelf: "center",
     flexDirection: "row",
+    padding: 8,
   },
   searchContainer: {
     flexDirection: "row",
   },
   searchBar: {
-    width: 310,
+    width: "80%",
     margin: 10,
   },
 });

@@ -18,7 +18,6 @@ type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 const Routes = () => {
-  
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -62,5 +61,9 @@ const Routes = () => {
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {},
+});
 
 export default Routes;
