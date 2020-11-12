@@ -37,22 +37,12 @@ function Movies() {
   const [open, setOpen] = useState(false); //opens the filter bar
   const [title, setTitle] = useState<string>(""); //searching
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState("Ratings");
   const filters: string[] = useSelector((state: AppState) => state.filter);
   const onChangeSearch = (query: string) => {
     setTitle(query);
     setPage(1);
-  };
-  const initiateSearch = (e: any) => {
-    setTitle(e.target.value);
-    setPage(1);
-    //sets the page to be page nr 1, when user search
-  };
-  const initiateSort = (e: any) => {
-    setSort(e);
-    setPage(1);
-    //sets the page to be page nr 1, when user sort
-  };
+  }; //sets the page to be page nr 1, when user search
+  const sort: string = useSelector((state: AppState) => state.sort);
 
   const click = () => {
     alert("clicked");
@@ -60,7 +50,7 @@ function Movies() {
   //console.log(filters);
   const params = new URLSearchParams([
     ["filter", filters.join()],
-    ["sort", sort],
+    //["sort", sort],
   ]);
   //list of comma in filters
 
