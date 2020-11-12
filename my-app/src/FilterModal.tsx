@@ -3,12 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import SortComponent from "./SortComponent";
 import FilterComponent from "./FilterComponent";
+import * as Haptics from "expo-haptics";
 
 function FilterModal() {
   const [sortOpen, setSortOpen] = useState(true);
-  const [visible, setVisible] = React.useState(false);
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
 
   return (
     <View style={styles.containerStyle}>
@@ -41,9 +39,9 @@ function FilterModal() {
         <Button
           style={[{ backgroundColor: "#b39ddb" }]}
           mode="contained"
-          onPress={showModal}
+          onPress={() => setSortOpen(true)}
         >
-          Søk
+          Vis søk
         </Button>
       </View>
     </View>

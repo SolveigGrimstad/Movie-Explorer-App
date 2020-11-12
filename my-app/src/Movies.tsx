@@ -11,7 +11,7 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TapGestureHandler } from "react-native-gesture-handler";
 import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
-//import {Filternav} from "./filternav";
+
 import { red100 } from "react-native-paper/lib/typescript/src/styles/colors";
 
 //import { Provider } from "react-native-paper/lib/typescript/src/core/settings";
@@ -40,12 +40,10 @@ function Movies() {
   const hideModal = () => setVisible(false);
 
   const [movies, setMovies] = useState<IMovie[]>([]);
-  const [open, setOpen] = useState(false); //opens the filter bar
   const [title, setTitle] = useState<string>(""); //searching
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState("Ratings");
   const filters: string[] = useSelector((state: AppState) => state.filter);
-  const onChangeSearch = (query: string) => setTitle(query);
   const initiateSearch = (e: any) => {
     setTitle(e.target.value);
     setPage(1);
@@ -57,10 +55,6 @@ function Movies() {
     //sets the page to be page nr 1, when user sort
   };
 
-  const click = () => {
-    alert("clicked");
-  };
-  //console.log(filters);
   const params = new URLSearchParams([
     ["filter", filters.join()],
     ["sort", sort],
@@ -92,22 +86,25 @@ function Movies() {
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
 
-  //<ModalDropdown options={['option 1', 'option 2']}/>
   return (
     <Provider>
       <View>
-        <Searchbar
-          placeholder=" search for movies"
-          onChangeText={onChangeSearch}
-          value={title}
-        />
-        <MaterialIcons
-          name="movie-filter"
-          size={40}
-          color="#7e57c2"
-          style={styles.modalToggle}
-          onPress={showModal}
-        />
+        <View style={styles.searchContainer}>
+          <Searchbar
+            placeholder="Search for movies"
+            onChangeText={initiateSearch}
+            value={title}
+            style={styles.searchBar}
+          ></Searchbar>
+          <MaterialIcons
+            name="filter-list"
+            size={30}
+            color="#7e57c2"
+            style={styles.modalToggle}
+            onPress={showModal}
+          />
+        </View>
+
         <View style={styles.pagination}>
           <AntDesign
             name="left"
@@ -147,7 +144,9 @@ function Movies() {
 }
 
 const styles = StyleSheet.create({
-  modalToggle: {},
+  modalToggle: {
+    marginTop: 20,
+  },
 
   containerStyle: {
     backgroundColor: "white",
@@ -160,6 +159,13 @@ const styles = StyleSheet.create({
   pagination: {
     alignSelf: "center",
     flexDirection: "row",
+  },
+  searchContainer: {
+    flexDirection: "row",
+  },
+  searchBar: {
+    width: 310,
+    margin: 10,
   },
 });
 

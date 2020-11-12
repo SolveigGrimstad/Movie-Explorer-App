@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import CheckBox from "react-native-check-box";
-import {
-  Avatar,
-  Card,
-  Button,
-  Title,
-  Paragraph,
-  Checkbox,
-} from "react-native-paper";
-//import { CheckBox } from "react-native-elements";
 import { updateGenreFilter, AppState } from "../store/store";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
@@ -27,6 +18,8 @@ function FilterComponent() {
         numColumns={2}
         renderItem={({ item }) => 
           (<CheckBox
+          checkBoxColor="#7e57c2"
+          
           key={item}
           style={{ flex: 1, padding: 10 }}
           onClick={() => {

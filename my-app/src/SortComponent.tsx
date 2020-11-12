@@ -11,12 +11,12 @@ import RadioForm, {
 function SortComponent() {
   const [checked, setChecked] = React.useState(true);
   const radio_props = [
-    { label: "Rating acending", value: 0 },
-    { label: "Rating descending", value: 1 },
-    { label: "Year acending", value: 2 },
-    { label: "Year decending", value: 3 },
-    { label: "Likes acending", value: 4 },
-    { label: "Likes decending", value: 5 },
+    { label: "Rating high-low", value: 0 },
+    { label: "Rating low-high", value: 1 },
+    { label: "Year high-low", value: 2 },
+    { label: "Year low-high", value: 3 },
+    { label: "Likes high-low", value: 4 },
+    { label: "Likes low-high", value: 5 },
   ];
 
   return (
@@ -25,7 +25,7 @@ function SortComponent() {
         radio_props={radio_props}
         initial={0}
         buttonColor={"#7e57c2"}
-        selectedButtonColor={"#7e57c2"}
+        selectedButtonColor="#7e57c2"
         onPress={(value) => {
           setChecked(checked);
         }}
@@ -34,11 +34,8 @@ function SortComponent() {
   );
 }
 const styles = StyleSheet.create({
-  checkbox: {
-    flexDirection: "row",
-  },
   radioButton: {
-    padding: 10,
+    padding: 20,
   },
 });
 
