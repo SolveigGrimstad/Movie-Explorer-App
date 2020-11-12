@@ -1,12 +1,18 @@
-import { GENRE_UPDATED_FILTER } from "./store";
+import { GENRE_UPDATED_FILTER, UPDATE_SORT } from "./store";
 
 export type filterAction = {
   type: string;
   payload: string;
 };
 
+export type sortAction = {
+  type: string;
+  payload: string; 
+}
+
+
 //Reducer-funksjonen, initialiserer store.ts med tom liste
-export default function filterReducer(
+export function filterReducer(
   state: string[] = [],
   action: filterAction
 ) {
@@ -18,6 +24,20 @@ export default function filterReducer(
       }
 
       const newState = [...state, action.payload];
+      return newState;
+    default:
+      return state;
+  }
+}
+
+export function sortReducer(
+  state: string = "Ratings",
+  action: sortAction
+) {
+  switch (action.type) {
+    case UPDATE_SORT:
+
+      const newState =  action.payload;
       return newState;
     default:
       return state;

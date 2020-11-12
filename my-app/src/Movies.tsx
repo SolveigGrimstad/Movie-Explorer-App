@@ -43,19 +43,15 @@ function Movies() {
   const [open, setOpen] = useState(false); //opens the filter bar
   const [title, setTitle] = useState<string>(""); //searching
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState("Ratings");
   const filters: string[] = useSelector((state: AppState) => state.filter);
+  const sort: string = useSelector((state: AppState) => state.sort);
   const onChangeSearch = (query: string) => setTitle(query);
   const initiateSearch = (e: any) => {
     setTitle(e.target.value);
     setPage(1);
     //sets the page to be page nr 1, when user search
   };
-  const initiateSort = (e: any) => {
-    setSort(e);
-    setPage(1);
-    //sets the page to be page nr 1, when user sort
-  };
+ 
 
   const click = () => {
     alert("clicked");
@@ -63,11 +59,12 @@ function Movies() {
   //console.log(filters);
   const params = new URLSearchParams([
     ["filter", filters.join()],
-    ["sort", sort],
+    //["sort", sort],
   ]);
   //list of comma in filters
 
   useEffect(() => {
+    console.log(sort);
     // gets all the movies. Title is if the user search for something. If now, shows all the movies
     const getMovies = async () => {
       const api_url =
@@ -91,7 +88,7 @@ function Movies() {
     getMovies();
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
-
+  
   //<ModalDropdown options={['option 1', 'option 2']}/>
   return (
     <Provider>

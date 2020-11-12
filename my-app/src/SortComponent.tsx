@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState}from "react";
 import { StyleSheet, Text, View } from "react-native";
 //import { RadioButton } from "react-native-paper";
 import { CheckBox } from "react-native-elements";
@@ -7,17 +7,29 @@ import RadioForm, {
   RadioButtonInput,
   RadioButtonLabel,
 } from "react-native-simple-radio-button";
+import { useDispatch } from "react-redux";
+import { updateSort } from "../store/store";
 
 function SortComponent() {
-  const [checked, setChecked] = React.useState(true);
+  //const [checked, setChecked] = React.useState(true);
+  const dispatch = useDispatch();
   const radio_props = [
-    { label: "Rating acending", value: 0 },
-    { label: "Rating descending", value: 1 },
-    { label: "Year acending", value: 2 },
-    { label: "Year decending", value: 3 },
-    { label: "Likes acending", value: 4 },
-    { label: "Likes decending", value: 5 },
+    { label: "Ratings", value: 0 },
+    { label: "Year", value: 1 },
+    { label: "starRating", value: 2 },
   ];
+  const [sort, setSort] = useState("Ratings");
+  const [page, setPage] = useState(1);
+
+  const initiateSort = (e: any) => {
+    let number: string = radio_props[e].label;
+    dispatch(updateSort(number)); 
+    setPage(1);
+    //setChecked(checked); 
+    //sets the page to be page nr 1, when user sort
+    console.log(number)
+  };
+ 
 
   return (
     <View style={styles.radioButton}>
@@ -26,9 +38,13 @@ function SortComponent() {
         initial={0}
         buttonColor={"#7e57c2"}
         selectedButtonColor={"#7e57c2"}
-        onPress={(value) => {
-          setChecked(checked);
-        }}
+        onPress={(e:any) => {
+          initiateSort(e)
+
+          
+        }
+      }
+      
       />
     </View>
   );
