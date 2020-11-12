@@ -30,7 +30,7 @@ function MovieInfo(props: any) {
     }
   };
 
-c  return (
+  return (
     <ScrollView>
       <Card style={styles.card}>
         <Card.Content>
