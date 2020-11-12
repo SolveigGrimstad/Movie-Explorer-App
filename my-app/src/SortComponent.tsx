@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import { updateSort } from "../store/store";
 
 function SortComponent() {
-  //const [checked, setChecked] = React.useState(true);
   const dispatch = useDispatch();
   const radio_props = [
     { label: "Ratings", value: 0 },
@@ -25,9 +24,7 @@ function SortComponent() {
     let number: string = radio_props[e].label;
     dispatch(updateSort(number));
     setPage(1);
-    //setChecked(checked);
     //sets the page to be page nr 1, when user sort
-    console.log(number);
   };
 
   return (

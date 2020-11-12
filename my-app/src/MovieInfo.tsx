@@ -55,8 +55,9 @@ function MovieInfo(props: any) {
           <View style={styles.likeContainer}>
             <View style={styles.likeHeart}>
               <Text>
-                Likes on this movie: {"\n"}{" "}
-                {(movie.starRating + like).toString()}
+                {"\n"}
+                Likes on this movie: {(movie.starRating + like).toString()}
+                {"\n"}
               </Text>
             </View>
             <View style={styles.heartButton}>
@@ -76,7 +77,6 @@ function MovieInfo(props: any) {
             {movie.Plot}
           </Text>
         </Card.Content>
-        <Divider />
       </Card>
     </ScrollView>
   );
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   heartButton: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    marginLeft: 150,
+    marginLeft: 100,
   },
   styleTitle: {
     flexDirection: "row",
@@ -115,10 +115,13 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     backgroundColor: "white",
     fontWeight: "bold",
+    fontSize: 18,
+    marginTop: 5,
   },
   year: {
     marginTop: 7,
     fontWeight: "bold",
+    fontSize: 18,
   },
 });
 

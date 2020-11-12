@@ -5,7 +5,11 @@ import SortComponent from "./SortComponent";
 import FilterComponent from "./FilterComponent";
 import * as Haptics from "expo-haptics";
 
-function FilterModal() {
+type FilterModalProps = {
+  close: () => void;
+};
+
+function FilterModal({ close }: FilterModalProps) {
   const [sortOpen, setSortOpen] = useState(true);
 
   return (
@@ -39,7 +43,7 @@ function FilterModal() {
         <Button
           style={[{ backgroundColor: "#b39ddb" }]}
           mode="contained"
-          onPress={() => setSortOpen(true)}
+          onPress={close}
         >
           Vis søk
         </Button>
@@ -58,7 +62,6 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     height: "100%",
-    width: "100%",
   },
   searchButton: {
     height: "auto",

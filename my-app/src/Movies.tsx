@@ -8,8 +8,6 @@ import { AppState } from "../store/store";
 import { Searchbar } from "react-native-paper";
 import { Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
-//import { Provider } from "react-native-paper/lib/typescript/src/core/settings";
-//import ModalDropdown from 'react-native-modal-dropdown';
 
 export interface IMovie {
   Title: string;
@@ -34,7 +32,6 @@ function Movies() {
   const hideModal = () => setVisible(false);
 
   const [movies, setMovies] = useState<IMovie[]>([]);
-  const [open, setOpen] = useState(false); //opens the filter bar
   const [title, setTitle] = useState<string>(""); //searching
   const [page, setPage] = useState(1);
   const filters: string[] = useSelector((state: AppState) => state.filter);
@@ -44,10 +41,6 @@ function Movies() {
   }; //sets the page to be page nr 1, when user search
   const sort: string = useSelector((state: AppState) => state.sort);
 
-  const click = () => {
-    alert("clicked");
-  };
-  //console.log(filters);
   const params = new URLSearchParams([
     ["filter", filters.join()],
     //["sort", sort],
@@ -105,29 +98,31 @@ function Movies() {
       <View style={styles.pagination}>
         <AntDesign
           name="left"
-          size={24}
-          color="black"
+          size={30}
+          color={page <= 1 ? "grey" : "#512da8"}
           onPress={() => setPage(page - 1)}
+          style={styles.arrow}
         />
-
-        <Entypo name="dot-single" size={24} color="black" />
 
         <AntDesign
           name="right"
-          size={24}
-          color="black"
+          size={30}
+          color={movies.length >= 24 ? "#512da8" : "grey"}
           onPress={() => setPage(page + 1)}
+          style={styles.arrow}
         />
       </View>
-      <View style={styles.movieContainer}>
-        <FlatList
-          data={movies}
-          keyExtractor={(item, _) => item._id}
-          //contentContainerStyle={styles.movieContainer}
-          numColumns={2}
-          renderItem={({ item }) => <Movie data={item} />}
-        />
-      </View>
+      <ScrollView>
+        <View style={styles.movieContainer}>
+          <FlatList
+            data={movies}
+            keyExtractor={(item, _) => item._id}
+            //contentContainerStyle={styles.movieContainer}
+            numColumns={2}
+            renderItem={({ item }) => <Movie data={item} />}
+          />
+        </View>
+      </ScrollView>
 
       <Portal>
         <Modal
@@ -135,7 +130,7 @@ function Movies() {
           onDismiss={hideModal}
           contentContainerStyle={styles.containerStyle}
         >
-          <FilterModal />
+          <FilterModal close={hideModal} />
         </Modal>
       </Portal>
     </Provider>
@@ -148,10 +143,11 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     backgroundColor: "white",
-    width: "auto",
-    height: "85%",
+    width: "90%",
+    height: 500,
     borderRadius: 10,
     padding: 10,
+    alignSelf: "center",
   },
   containerContent: {},
   movieContainer: {
@@ -168,6 +164,10 @@ const styles = StyleSheet.create({
   searchBar: {
     width: "80%",
     margin: 10,
+  },
+  arrow: {
+    marginLeft: 15,
+    marginRight: 15,
   },
 });
 
