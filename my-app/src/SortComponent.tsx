@@ -9,6 +9,7 @@ import RadioForm, {
 } from "react-native-simple-radio-button";
 import { useDispatch } from "react-redux";
 import { updateSort } from "../store/store";
+import { setStatusBarNetworkActivityIndicatorVisible } from "expo-status-bar";
 
 function SortComponent() {
   //const [checked, setChecked] = React.useState(true);
@@ -18,16 +19,21 @@ function SortComponent() {
     { label: "Year", value: 1 },
     { label: "starRating", value: 2 },
   ];
-  const [sort, setSort] = useState("Ratings");
+  //const [sort, setSort] = useState("Ratings");
   const [page, setPage] = useState(1);
+  const [state, setState] = useState( 0); 
+  const [checked, isChecked] = useState(false); 
 
   const initiateSort = (e: any) => {
     let number: string = radio_props[e].label;
     dispatch(updateSort(number)); 
     setPage(1);
+    setState(radio_props[e].value);
+    isChecked(!checked); 
+
     //setChecked(checked); 
     //sets the page to be page nr 1, when user sort
-    console.log(number)
+    console.log(state)
   };
  
 
@@ -35,9 +41,10 @@ function SortComponent() {
     <View style={styles.radioButton}>
       <RadioForm
         radio_props={radio_props}
-        initial={0}
+        initial={state}
         buttonColor={"#7e57c2"}
         selectedButtonColor={"#7e57c2"}
+        checked = {true}
         onPress={(e:any) => {
           initiateSort(e)
 
