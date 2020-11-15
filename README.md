@@ -41,12 +41,6 @@ Route-filen står for navigasjon mellom de ulike sidene, der stack navigatior er
 videre til detaljer om de ulike filmene. 
 
 
-
-Vi har i tillegg lagt til en funksjon som gjør at en bruker kan like en film.  Hver gang en bruker klikker på hjertet blir det gjort et axios-kall og bruker app.put for å oppdatere databasen. 
-
-Stylingen i dette prosjektet har vi prøvd å holde ganske enkel da det meste kom med Materialize. I tillegg har vi tatt i bruk flexbox og tabeller for å få alt til å ligge som vi ønsket. 
-
-
 ### Redux <a name="redux"></a>:
 Vi har som i prosjekt 3, tatt i bruk Redux til filtrert søk. Men i dette prosjektet var det nødvendig med Redux når det kom til sortert søk også. 
 
@@ -55,9 +49,8 @@ Vi har som i prosjekt 3, tatt i bruk Redux til filtrert søk. Men i dette prosje
 
 
 ### Tredjepartskomponenter <a name="komponenter"></a>:
-I dette prosjektet 
-
-
+I dette prosjektet har vi tatt i bruk react-native-paper som tredjepartskomponenter til blant annet de ulike "kortene" for å vise hver film. 
+Ellers har vi implementert de resterende komponentene fra bunn av.  
 
 
 
@@ -81,20 +74,6 @@ npm start
 
 
 # Bruk av git <a name="git"></a>:
-Under hele prosjektet har vi brukt git flittig. Hele prosjektet startet med å sette opp wireframes slik at vi alle var inneforstått med hvordan vi ønsket at siden skulle se ut.
-Deretter satte vi opp ulike issues for nettsiden vår, og delte ut arbeidsoppgaver. I startfasen hadde vi noe problemer med å få sette opp backend samt koble opp virituell maskin, så 
-dette tok dessverre mye av tiden vår i starten. Når vi først kom i gang fikk alle medlemmene utdelt issues som vi ønsket å jobbe med. Ble man ferdig med issuet sitt, kunne man fortsette
-på neste uferdige issue. På den måten, kom vi gjennom alt som måtte gjøres. Vi var ikke like flinke til å close issuesene fortløpende som vi ønsket, men alle issuesene ble utført. 
-Siden ble noe anderledes enn det vi først så for oss siden vi kanskje var litt for ambisiøse. Noe vi ikke rakk å implementere var det å kunne trykke på en film og komme til en ny side 
-som hadde mer utfyllende informasjon om de ulike filmene. Vi valgte heller at man kunne trykke på hver film og lese direkte i filmbibloteket da kravet var å kunne se mer detaljer om hver film, noe vi har.
-Et annet issue som ikke ble fullført 
-
-Vi har alltid sørget for at alle skulle være oppdatert til en vær tid, og vite hvilken branch som har de nyeste oppdateringene. 
-I tillegg var det også viktig for oss å alltid ha en back-up-branch der all nylig implementert funksjonalitet fungerte som det skulle slik at vi alltid hadde noe 
-å gå tilbake til dersom ting ikke fungerte som det skulle. I dette prosjektet har vi opprettet utrolig mange brancher siden vi har gjort mye feil og har måttet gått frem og tilbake
-flere ganger. Fra tidligere prosjekt, ville vi forbedre oss på det med commits meldinger og branchnavn. Dette har vi vært flinkere på under dette prosjektet, men det kunne vært bedre.
-Som sagt, har vi prøvd mye forskjellig og testet mye ulik funksjonalitet/setup som har resultert i noen ugunstige branchnavn. Commitsene derimot, har vi vært litt mer konsekvens og 
-vært litt mer beskrivende i forhold til hvilke funksjonalitet vi ønsket å implementere. 
 
 
 
