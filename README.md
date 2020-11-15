@@ -11,9 +11,9 @@
 6. [Sources](#source)
 
 # Om prosjektet <a name="om"></a>:
-I dette prosjektet har vi laget en applikasjon for filmsøk. Webapplikasjonen lar deg søke, filtrere, sortere, bla og like filmer. 
-Når du kommer inn på hovedsiden kan du trykke deg inn på "Go to movies", der du kan finne nærmere 900 filmer vi har hentet fra et public API. 
-Trykker du på filmposterne vil du få opp ytterlige informasjon om filmene som blant annet tittel, utgivelsesår, varighet, IMDB-rating og et 
+I dette prosjektet har vi laget en applikasjon for filmsøk, inspirert av prosjekt 3. Mobilapplikasjonen lar deg søke, filtrere, sortere, bla og like filmer. 
+Når du kommer inn på hovedsiden kan du trykke deg inn på "Go to movies", der du kan finne nærmere 900 filmer. 
+Trykker du på "Read more" under filmene vil du få opp ytterlige informasjon om filmene som blant annet tittel, utgivelsesår, IMDB-rating og et 
 lite sammendrag av hver film. Her vil du også få muligheten til å se hvor mange som har likt filmen, samt gi din egen like/unlike 
 ved å trykke på hjertet. Brukeren kan både søke, filtrere og sortere på hele filmsettet, og resultatet blir representert 
 på ulike sider man kan bla seg gjennom. Vi har satt default sorteringen basert på rangering, siden vi tenker at dette er det mest naturlige valget slik at de best
@@ -55,6 +55,7 @@ Ellers har vi implementert de resterende komponentene fra bunn av.
 
 
 # Installering <a name="Installering"></a>:
+Backenden fra tidligere prosjekt kjører på en virituell maskin, så det eneste som er nødvendig er å starte frontenden. 
 For å kunne kjøre prosjektet må man enten være koblet til NTNU nett eller NTNUs VPN. 
 
 1. Klon git repoet med SSH/HTTP i ønsket lokasjon.
@@ -63,13 +64,6 @@ For å kunne kjøre prosjektet må man enten være koblet til NTNU nett eller NT
 ````
 npm install
 npm run dev
-````
-
-3. Deretter lokaliser deg inn i frontendmappen og skriv 
-
-````
-npm install
-npm start
 ````
 
 
