@@ -1,4 +1,4 @@
-# Project 4
+# Projekt 4
 
 ## Innhold
 1. [Om](#om)
@@ -74,7 +74,9 @@ npm start
 
 
 # Bruk av git <a name="git"></a>:
-
+* vært flinkere denne gangen 
+* commits med issuenummer 
+* flinkere på bruk av issues
 
 
 # Sources <a name="source"></a>:
