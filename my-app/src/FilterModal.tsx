@@ -4,7 +4,7 @@ import { Button, Checkbox } from "react-native-paper";
 import SortComponent from "./SortComponent";
 import FilterComponent from "./FilterComponent";
 
-function FilterModal() {
+function FilterModal(props: any) {
   const [sortOpen, setSortOpen] = useState(true);
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
@@ -35,7 +35,7 @@ function FilterModal() {
         </Button>
       </View>
 
-      {sortOpen ? <SortComponent /> : <FilterComponent />}
+      {sortOpen ? <SortComponent state={props.state} setState={props.setState} /> : <FilterComponent />}
 
       <View style={styles.searchButton}>
         <Button

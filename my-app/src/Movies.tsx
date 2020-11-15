@@ -39,6 +39,9 @@ function Movies() {
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
+  const [state, setState] = useState(0); 
+
+
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [open, setOpen] = useState(false); //opens the filter bar
   const [title, setTitle] = useState<string>(""); //searching
@@ -128,7 +131,7 @@ function Movies() {
             onDismiss={hideModal}
             contentContainerStyle={styles.containerStyle}
           >
-            <FilterModal />
+            <FilterModal state={state} setState={setState} />
           </Modal>
         </Portal>
       </View>
