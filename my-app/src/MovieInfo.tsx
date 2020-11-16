@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
   },
   likeContainer: {
     flexDirection: "row",
+    justifyContent: "space-between"
   },
   star: {
     flexDirection: "row",
