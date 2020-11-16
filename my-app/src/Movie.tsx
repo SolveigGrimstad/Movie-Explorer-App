@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    margin: 2,
+    margin: 1,
   },
   cardContainer: {
     width: "50%",
-    padding: 10
+    padding: 5,
   }
 });
 

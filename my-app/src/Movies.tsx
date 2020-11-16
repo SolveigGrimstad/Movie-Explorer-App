@@ -43,17 +43,6 @@ function Movies() {
   const sort: string = useSelector((state: AppState) => state.sort);
 
   const ref = React.useRef<FlatList | null >(null);
-  
-
-  const initiatePaginationBack = () => {
-    setPage(page - 1);
-    ref.current?.scrollToIndex({index:0})
-  };
-
-  const initiatePaginationFor = () => {
-    setPage(page + 1);
-    ref.current?.scrollToIndex({index:0})
-  };
 
   const params = new URLSearchParams([
     ["filter", filters.join()],
@@ -93,6 +82,7 @@ function Movies() {
   //<ModalDropdown options={['option 1', 'option 2']}/>
   return (
     <Provider>
+      <View style={styles.topContainer}>
       <View style={styles.searchContainer}>
         <Searchbar
           placeholder="Search for movies"
@@ -110,21 +100,25 @@ function Movies() {
       </View>
 
       <View style={styles.pagination}>
+        {page > 1 &&
         <AntDesign
           name="left"
           size={30}
-          color={page <= 1 ? "grey" : "#512da8"}
+          color= "#512da8"
           onPress={() => {setPage(page - 1); ref.current?.scrollToOffset({offset:0})}}
-          style={styles.arrow}
+          style={styles.arrowLeft}
         />
-
+}
+      {movies.length >= 24 &&
         <AntDesign
           name="right"
           size={30}
-          color={movies.length >= 24 ? "#512da8" : "grey"}
+          color= "#512da8" 
           onPress={() => {setPage(page + 1); ref.current?.scrollToOffset({offset:0})}}
-          style={styles.arrow}
+          style={styles.arrowRight}
         />
+      }
+      </View>
       </View>
    
           <FlatList
@@ -170,15 +164,26 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flexDirection: "row",
+    width: "100%", 
+
+
   },
   searchBar: {
-    width: "80%",
+    width: "85%",
     margin: 10,
   },
-  arrow: {
-    marginLeft: 15,
-    marginRight: 15,
+  arrowLeft: {
+    position: "absolute",
+    right: 30
+
   },
+  arrowRight: {
+    position: "absolute",
+    right: -30
+  },
+  topContainer: {
+    paddingBottom: 20
+  }
 });
 
 export default Movies;

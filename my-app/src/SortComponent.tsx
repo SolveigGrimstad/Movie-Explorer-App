@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-//import { RadioButton } from "react-native-paper";
 import { CheckBox } from "react-native-elements";
-import RadioForm, {
-  RadioButton,
-  RadioButtonInput,
-  RadioButtonLabel,
-} from "react-native-simple-radio-button";
+import RadioForm from "react-native-simple-radio-button";
 import { useDispatch } from "react-redux";
 import { updateSort } from "../store/store";
 
@@ -33,6 +28,9 @@ function SortComponent() {
         radio_props={radio_props}
         initial={0}
         buttonColor={"#7e57c2"}
+        buttonSize={30}
+        buttonStyle={{}}
+        buttonWrapStyle={{ margin: 10000 }}
         selectedButtonColor="#7e57c2"
         onPress={(e: any) => {
           initiateSort(e);
@@ -43,7 +41,7 @@ function SortComponent() {
 }
 const styles = StyleSheet.create({
   radioButton: {
-    padding: 20,
+    padding: 30,
   },
 });
 

@@ -36,17 +36,17 @@ function FilterModal({ close }: FilterModalProps) {
           Filter
         </Button>
       </View>
-
-      {sortOpen ? <SortComponent /> : <FilterComponent />}
-
-      <View style={styles.searchButton}>
-        <Button
-          style={[{ backgroundColor: "#b39ddb" }]}
-          mode="contained"
-          onPress={close}
-        >
-          Vis søk
-        </Button>
+      <View style={styles.radioContainer}>
+        <View>{sortOpen ? <SortComponent /> : <FilterComponent />}</View>
+        <View style={styles.searchButton}>
+          <Button
+            style={[{ backgroundColor: "#b39ddb" }]}
+            mode="contained"
+            onPress={close}
+          >
+            Vis søk
+          </Button>
+        </View>
       </View>
     </View>
   );
@@ -65,5 +65,9 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     height: "auto",
+  },
+  radioContainer: {
+    flex: 1,
+    justifyContent: "space-between",
   },
 });
