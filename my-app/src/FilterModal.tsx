@@ -3,15 +3,14 @@ import { StyleSheet, Text, View } from "react-native";
 import { Button, Checkbox } from "react-native-paper";
 import SortComponent from "./SortComponent";
 import FilterComponent from "./FilterComponent";
-import * as Haptics from "expo-haptics";
 
 type FilterModalProps = {
   close: () => void;
+  
 };
 
 function FilterModal({ close }: FilterModalProps) {
   const [sortOpen, setSortOpen] = useState(true);
-
   return (
     <View style={styles.containerStyle}>
       <View style={styles.buttonContainer}>
@@ -38,6 +37,7 @@ function FilterModal({ close }: FilterModalProps) {
       </View>
 
       {sortOpen ? <SortComponent /> : <FilterComponent />}
+      
 
       <View style={styles.searchButton}>
         <Button

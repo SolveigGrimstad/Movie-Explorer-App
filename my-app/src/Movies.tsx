@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { AppState } from "../store/store";
 import { Searchbar } from "react-native-paper";
 import { Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
-import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
+import {Modal, Provider, Portal, Checkbox } from "react-native-paper";
 
 export interface IMovie {
   Title: string;
@@ -27,10 +27,7 @@ export interface IMovie {
 }
 
 function Movies() {
-  const [visible, setVisible] = React.useState(false);
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-
+  const [visible, setVisible] = useState(false);
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [title, setTitle] = useState<string>(""); //searching
   const [page, setPage] = useState(1);
@@ -76,7 +73,6 @@ function Movies() {
   }, [sort, filters, page, title]);
   // the variables thats going to change when the useEffect is called
 
-  //<ModalDropdown options={['option 1', 'option 2']}/>
   return (
     <Provider>
       <View style={styles.searchContainer}>
@@ -91,7 +87,9 @@ function Movies() {
           size={30}
           color="#7e57c2"
           style={styles.modalToggle}
-          onPress={showModal}
+          onPress={() => {
+            setVisible(true);
+          }}
         />
       </View>
 
@@ -127,10 +125,10 @@ function Movies() {
       <Portal>
         <Modal
           visible={visible}
-          onDismiss={hideModal}
+          onDismiss={()=> setVisible(false)}
           contentContainerStyle={styles.containerStyle}
         >
-          <FilterModal close={hideModal} />
+          <FilterModal close={() => setVisible(false)} />
         </Modal>
       </Portal>
     </Provider>
@@ -142,9 +140,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   containerStyle: {
+    flexDirection: "row",
     backgroundColor: "white",
     width: "90%",
-    height: 500,
+    height: "80%",
     borderRadius: 10,
     padding: 10,
     alignSelf: "center",
