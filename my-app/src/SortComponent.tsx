@@ -17,7 +17,7 @@ function SortComponent() {
     { label: "Year", value: 1 },
     { label: "starRating", value: 2 },
   ];
-  const [sort, setSort] = useState("Ratings");
+
   const [page, setPage] = useState(1);
 
   const initiateSort = (e: any) => {
@@ -33,7 +33,7 @@ function SortComponent() {
         radio_props={radio_props}
         initial={0}
         buttonColor={"#7e57c2"}
-        selectedButtonColor={"#7e57c2"}
+        selectedButtonColor="#7e57c2"
         onPress={(e: any) => {
           initiateSort(e);
         }}

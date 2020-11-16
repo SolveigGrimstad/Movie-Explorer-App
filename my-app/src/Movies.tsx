@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Movie from "./Movie";
 import FilterModal from "./FilterModal";
@@ -8,6 +8,7 @@ import { AppState } from "../store/store";
 import { Searchbar } from "react-native-paper";
 import { Entypo, MaterialIcons, AntDesign } from "@expo/vector-icons";
 import { Modal, Provider, Portal, Checkbox } from "react-native-paper";
+import { useScrollToTop } from "@react-navigation/native";
 
 export interface IMovie {
   Title: string;
@@ -40,6 +41,19 @@ function Movies() {
     setPage(1);
   }; //sets the page to be page nr 1, when user search
   const sort: string = useSelector((state: AppState) => state.sort);
+
+  const ref = React.useRef<FlatList | null >(null);
+  
+
+  const initiatePaginationBack = () => {
+    setPage(page - 1);
+    ref.current?.scrollToIndex({index:0})
+  };
+
+  const initiatePaginationFor = () => {
+    setPage(page + 1);
+    ref.current?.scrollToIndex({index:0})
+  };
 
   const params = new URLSearchParams([
     ["filter", filters.join()],
@@ -100,7 +114,7 @@ function Movies() {
           name="left"
           size={30}
           color={page <= 1 ? "grey" : "#512da8"}
-          onPress={() => setPage(page - 1)}
+          onPress={() => {setPage(page - 1); ref.current?.scrollToOffset({offset:0})}}
           style={styles.arrow}
         />
 
@@ -108,21 +122,21 @@ function Movies() {
           name="right"
           size={30}
           color={movies.length >= 24 ? "#512da8" : "grey"}
-          onPress={() => setPage(page + 1)}
+          onPress={() => {setPage(page + 1); ref.current?.scrollToOffset({offset:0})}}
           style={styles.arrow}
         />
       </View>
-      <ScrollView>
-        <View style={styles.movieContainer}>
+   
           <FlatList
+          ref={ref}
             data={movies}
             keyExtractor={(item, _) => item._id}
             //contentContainerStyle={styles.movieContainer}
             numColumns={2}
             renderItem={({ item }) => <Movie data={item} />}
           />
-        </View>
-      </ScrollView>
+       
+
 
       <Portal>
         <Modal
@@ -148,10 +162,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     alignSelf: "center",
-  },
-  containerContent: {},
-  movieContainer: {
-    width: "100%",
   },
   pagination: {
     alignSelf: "center",

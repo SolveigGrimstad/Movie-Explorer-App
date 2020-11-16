@@ -12,6 +12,7 @@ function Movie({ data }: MovieProps) {
   const navigation = useNavigation();
 
   return (
+    <View style={styles.cardContainer}>
     <Card style={styles.card}>
       <Card.Content>
         <Card.Cover style={styles.cardImage} source={{ uri: data.Poster }} />
@@ -25,17 +26,22 @@ function Movie({ data }: MovieProps) {
         </Button>
       </Card.Actions>
     </Card>
+    </View>
   );
 }
 const styles = StyleSheet.create({
   cardImage: {
-    width: 150,
-    height: 250,
+    width: "100%",
+    aspectRatio: 0.66,
   },
   card: {
-    width: 180,
+    flex: 1,
     margin: 2,
   },
+  cardContainer: {
+    width: "50%",
+    padding: 10
+  }
 });
 
 export default Movie;
