@@ -22,7 +22,6 @@ spesifisert søk.
 
 <img src="moviebib.png" alt="Moviebiblotek" width="600" />
 
-<img src="moviesearch.png" alt="Moviebiblotek" width="600" />
 
 # Teknologi <a name="teknologi"></a>:
 
