@@ -36,11 +36,8 @@ function FilterModal({ close }: FilterModalProps) {
       </View>
       <View style={styles.radioContainer}>
         <View>{sortOpen ? <SortComponent /> : <FilterComponent />}</View>
-        {
-          {
-            /*switches between the sort and filter modal */
-          }
-        }
+
+        {/*switches between the sort and filter modal */}
 
         <View style={styles.searchButton}>
           <Button

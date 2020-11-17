@@ -35,9 +35,8 @@ function SortComponent() {
         initial={state}
         radio_props={radio_props}
         buttonColor={"#7e57c2"}
-        //buttonSize={30}
-        buttonWrapStyle={{ margin: 10000 }}
-        selectedButtonColor="#7e57c2"
+        selectedButtonColor={"#7e57c2"}
+        radioStyle={{ marginVertical: 20 }}
         onPress={(e: any) => {
           initiateSort(e);
         }}

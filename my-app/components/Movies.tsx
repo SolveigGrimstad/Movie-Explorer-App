@@ -134,16 +134,17 @@ function Movies() {
         numColumns={2}
         renderItem={({ item }) => <Movie data={item} />}
       />
-
-      <Portal>
-        <Modal
-          visible={visible}
-          onDismiss={() => setVisible(false)}
-          contentContainerStyle={styles.containerStyle}
-        >
-          <FilterModal close={() => setVisible(false)} />
-        </Modal>
-      </Portal>
+      {visible && (
+        <Portal>
+          <Modal
+            visible={visible}
+            onDismiss={() => setVisible(false)}
+            contentContainerStyle={styles.containerStyle}
+          >
+            <FilterModal close={() => setVisible(false)} />
+          </Modal>
+        </Portal>
+      )}
     </Provider>
   );
 }

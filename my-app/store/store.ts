@@ -1,16 +1,12 @@
-import {filterReducer, sortReducer } from "../store/updateGenreFilter";
+import {
+  filterReducer,
+  sortReducer,
+  GENRE_UPDATED_FILTER,
+  UPDATE_SORT,
+} from "../store/updateGenreFilter";
 import { createStore, combineReducers, Store } from "redux";
 
-/*
-export type AppState = {
-  filter: string[];
-  sort: string; 
-};
-*/
 export type AppState = ReturnType<typeof rootReducer>;
-
-export const GENRE_UPDATED_FILTER = "GENRE_UPDATED_FILTER";
-export const UPDATE_SORT = "UPDATE_SORT"; 
 
 export function updateGenreFilter(newFilter: string = "") {
   return {
@@ -19,14 +15,12 @@ export function updateGenreFilter(newFilter: string = "") {
   };
 }
 
-
-export function updateSort(newSort: string = ""){
-  return{
-    type:UPDATE_SORT,
+export function updateSort(newSort: string = "") {
+  return {
+    type: UPDATE_SORT,
     payload: newSort,
-  }
+  };
 }
-
 
 //Utility-funksjon for å kombinere flere reducere
 const rootReducer = combineReducers({
@@ -34,7 +28,7 @@ const rootReducer = combineReducers({
   sort: sortReducer,
 });
 
-function configureStore(){
+function configureStore() {
   const store = createStore(
     rootReducer,
     (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
