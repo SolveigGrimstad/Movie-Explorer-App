@@ -20,6 +20,9 @@ function MovieInfo() {
     const getDataAsync = async () => {
       const storedColor = await getData();
       setColor(storedColor);
+      if (storedColor) {
+        setLike(1);
+      }
     };
     getDataAsync();
   }, []);
