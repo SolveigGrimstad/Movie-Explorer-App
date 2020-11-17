@@ -1,4 +1,6 @@
 # Projekt 4
+Vi valgte alternativ A, React Native, for prosjekt4. Vi bestemte oss for å jobbe videre i samme gruppe som de tidligere prosjektene og endte da opp med
+å bruke backend fra prosjekt 3. Backend kjører kontinuerlig fra virtuell maskin, slik at man kun trenger å kjøre frontend for å få opp appen.  
 
 ## Innhold
 1. [Om](#om)
@@ -11,7 +13,7 @@
 6. [Sources](#source)
 
 # Om prosjektet <a name="om"></a>:
-I dette prosjektet har vi laget en applikasjon for filmsøk, inspirert av prosjekt 3. Mobilapplikasjonen lar deg søke, filtrere, sortere, bla og like filmer. 
+I dette prosjektet har vi laget en mobilapplikasjon for filmsøk, inspirert av prosjekt 3. Mobilapplikasjonen lar deg søke, filtrere, sortere, bla og like filmer. 
 Når du kommer inn på hovedsiden kan du trykke deg inn på "Go to movies", der du kan finne nærmere 900 filmer. 
 Trykker du på "Read more" under filmene vil du få opp ytterlige informasjon om filmene som blant annet tittel, utgivelsesår, IMDB-rating og et 
 lite sammendrag av hver film. Her vil du også få muligheten til å se hvor mange som har likt filmen, samt gi din egen like/unlike 
@@ -54,15 +56,15 @@ Ellers har vi implementert de resterende komponentene fra bunn av.
 
 
 # Installering <a name="Installering"></a>:
-Backenden fra tidligere prosjekt kjører på en virituell maskin, så det eneste som er nødvendig er å starte frontenden. 
+Backenden fra tidligere prosjekt kjører på en virtuell maskin, så det eneste som er nødvendig er å starte frontenden. 
 For å kunne kjøre prosjektet må man enten være koblet til NTNU nett eller NTNUs VPN. 
 
 1. Klon git repoet med SSH/HTTP i ønsket lokasjon.
-2. Lokaliser deg til backend mappen og kjør 
+2. Lokaliser deg til frontend mappen og kjør 
 
 ````
 npm install
-npm run dev
+npm start
 ````
 
 
