@@ -22,7 +22,7 @@ på ulike sider man kan bla seg gjennom. Vi har satt default sorteringen basert 
 rangerte filmene havner øverst. Både søk, filtrering og sortering fungerer om hverandre og man kan gjøre alle operasjonene samtidig dersom man ønsker et mer 
 spesifisert søk. 
 
-<img src="moviebib.png" alt="Moviebiblotek" width="600" />
+<img src="movielib.png" alt="Moviebiblotek" width="600" />
 
 
 # Teknologi <a name="teknologi"></a>:
