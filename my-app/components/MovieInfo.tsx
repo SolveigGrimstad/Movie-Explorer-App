@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, Text, ScrollView, View } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { IMovie } from "./Movies";
@@ -7,6 +7,7 @@ import { Entypo } from "@expo/vector-icons";
 import axios from "axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Divider } from "react-native-elements";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function MovieInfo() {
   const movie = useRoute().params as IMovie;
@@ -15,18 +16,50 @@ function MovieInfo() {
 
   //likebutton
 
+  useEffect(() => {
+    const getDataAsync = async () => {
+      const storedColor = await getData();
+      setColor(storedColor);
+      if (storedColor) {
+        setLike(1);
+      }
+    };
+    getDataAsync();
+  }, []);
+
   const handleClick = () => {
     //when liking, changing color and the count decreases/increases
     setColor(!color);
 
     if (color == true) {
       axios.put(`http://it2810-42.idi.ntnu.no:8000/api/dislike/${movie._id}`);
+      storeData(false);
 
       setLike(like - 1);
     } else {
       axios.put(`http://it2810-42.idi.ntnu.no:8000/api/like/${movie._id}`);
+      storeData(true);
 
       setLike(like + 1);
+    }
+  };
+
+  const storeData = async (color: any) => {
+    try {
+      const jsonValue = JSON.stringify(color);
+      await AsyncStorage.setItem("@color-" + movie._id, jsonValue);
+    } catch (e) {
+      // saving error
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@color-" + movie._id);
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      // error reading value
+      return false;
     }
   };
 
