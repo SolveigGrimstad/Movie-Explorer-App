@@ -43,12 +43,12 @@ expo init my-app
 De funksjonelle komponentene og klassene er implementert ved hjelp av JSX og Typescript. Prosjektet er satt opp av ulike komponenter der alt blir satt sammen i App.tsx og routes.tsx. 
 Route-filen står for navigasjon mellom de ulike sidene, der stack navigator er tatt i bruk. Derfra blir det lagd en stack som gir deg muligheten til å gå fra hjemmesiden, til filmbiblioteket, og videre til detaljer om de ulike filmene. Når du er inne på filmbibloteket kan du velge å sortere/filtrere ved å trykke på filterikonet. Da dukker det opp en modal over innholdet som gir deg mulighet til å sortere/filtrere. 
 
-Vi har gjenbrukt mye kode fra prosjekt 3, men det er visse forskjeller vi har måttet gjøre for å få den til å fungere og kjøre i react native. Alt av styling i prosjekt  3 ble gjort i egne css filer, mens i prosjekt 4 har vi brukt stylesheets direkte inne i filene. En annen forskjell er at react native ikke bruker HTML for å rendre appen, men egne komponenter. F.eks så bruker de view der vi gjerne ville brukt div i react.js. 
+Vi har gjenbrukt mye kode fra prosjekt 3, men det er visse forskjeller vi har måttet gjøre for å få den til å fungere og kjøre i react native. Alt av styling i prosjekt 3 ble gjort i egne css filer, mens i prosjekt 4 har vi brukt stylesheets direkte inne i filene. En annen forskjell er at react native ikke bruker HTML for å rendre appen, men egne komponenter. F.eks så bruker de view der vi gjerne ville brukt div i react.js. 
 
 <img src="search.PNG" alt="Søk" width="200" />
 
-## Async Storage <a name="Async-storage"></a>:
-For at en bruker ikke skal trenge å like de sammen filmene på nytt igjen har vi benyttet oss av Async Storage. 
+### Async Storage <a name="Async-storage"></a>:
+Fra tidligere prosjekt har vi hatt en “like” funksjon som vi ønsket å  implementere i dette prosjektet også. Når en bruker trykker på hjerte-ikonet blir filmen likt og databasen oppdateres. Den samme logikken gjelder hvis brukeren velger å unlike filmen igjen. Vi har benyttet oss av Async Storage for at likesene lagres lokalt  på enheten. Liksene til en bruker blir da bevart for hver gang brukeren er inne på appen. 
 
 <img src="like.PNG" alt="Hjerte" width="200" />
 
@@ -56,17 +56,15 @@ For at en bruker ikke skal trenge å like de sammen filmene på nytt igjen har v
 Vi har som i prosjekt 3, tatt i bruk Redux til filtrert søk. Men i dette prosjektet var det nødvendig med Redux når det kom til sortert søk også ettersom vi lagde en egen komponent som tok for seg sortering. Vi måtte dermed ha muligheten for å lagre valgt sorteringsform globalt slik at vi fikk hentet ut riktig verdi i backendkallet i movies.tsx filen. 
 Verdiene for filtrering og sortering  blir lagret i store.tsx og ved hjelp av Reducer-funksjoner som ligger i updateGenreFilter.ts blir sorterings og filtreringsverdier oppdatert. Ved å ta i bruk Redux Devtools, som er en extention i Google Chrome, kan vi nå sjekke om sorteringsverdier og filtre som blir krysset av blir lagt i staten.
 
-
 <img src="filter.PNG" alt="Filter" width="200" />
 <img src="sort2.PNG" alt="Sort" width="200" />
 <img src="scroll.PNG" alt="Scroll" width="200" />
 
 
-
-
-
 ### Tredjepartskomponenter <a name="komponenter"></a>:
-I dette prosjektet har vi tatt i bruk react-native-paper som tredjepartskomponent til blant annet de ulike "kortene" for å vise hver film. Grunnen til at vi valgte å bruke tredjepartskomponent på visningen av filmene var fordi vi synes dette så mest ryddig ut, og fikk muligheten til å teste tredjepartskomponenter for React native. Dette sparte oss også for mye tid, og vi kunne bruke tiden på å implementere funksjonalitet. En ulempe med at vi brukte tredjepartskomponenter er at når man kjører applikasjonen på f.eks. en iPhone som har nattmodus, endrer fargene seg dynamisk med enhetens innstillinger på nattmodus. Ellers i applikasjonen har vi implementert de resterende komponentene fra bunn av.  
+I dette prosjektet har vi tatt i bruk react-native-paper som tredjepartskomponent til blant annet de ulike "kortene" for å vise hver film. Grunnen til at vi valgte å bruke tredjepartskomponent på visningen av filmene var fordi vi synes dette så mest ryddig ut, og fikk muligheten til å teste tredjepartskomponenter for React native. Dette sparte oss også for mye tid, og vi kunne bruke tiden på å implementere funksjonalitet. En ulempe med at vi brukte tredjepartskomponenter er at når man kjører applikasjonen på f.eks. en iPhone som har nattmodus, endrer fargene seg dynamisk med enhetens innstillinger på nattmodus. 
+
+Vi har også brukt andre react native pakker til f.eks. searchbar, modal, radiobuttons i sorteringskomponenten og checkboxes til filtreringskomponenten.  Ellers i applikasjonen har vi implementert de resterende komponentene fra bunn av.  
 
 # Testing <a name="Testing"></a>:
 Underveis i prosjektet har vi kjørt applikasjonen på ulike versjoner av iPhone, siden dette er mobilen alle på gruppen har. I tillegg har vi også fått låne ulike versjoner av Android mobiler for å sjekke at alt var som det skulle. Vi har også testet applikasjonen på iPad for å se hvordan de ulike elementene plasserer seg på større enheter. På denne måten forsikret vi oss om at elementene skalerte seg riktig i forhold til ulike skjermstørrelser. 
@@ -90,13 +88,12 @@ npm start
 
 
 # Bruk av git <a name="git"></a>:
-Under hele prosjektet har vi brukt git flittig.Vi satt opp ulike issues for nettsiden vår, og delte ut arbeidsoppgaver. Alle fikk utdelt issues de ønsker å jobbe med.  Ble man ferdig med issuet sitt, kunne man fortsette på neste uferdige issue. På den måten, kom vi gjennom alt som måtte gjøres.Vi var ikke like flinke til å close issuesene fortløpende som vi ønsket, men alle issuesene ble utført.
+Under hele prosjektet har vi brukt git flittig. Vi satt opp ulike issues for nettsiden vår, og delte ut arbeidsoppgaver. Alle fikk utdelt issues de ønsker å jobbe med. Ble man ferdig med issuet sitt, kunne man fortsette på neste uferdige issue. På den måten, kom vi gjennom alt som måtte gjøres.Vi var ikke like flinke til å close issuesene fortløpende som vi ønsket, men alle issuesene ble utført. 
 
-Vi har alltid sørget for at alle skulle være oppdatert til en vær tid, og vite hvilken branch som har de nyeste oppdateringene. I tillegg var det også viktig for oss å alltid ha en back-up-branch der all nylig implementert funksjonalitet fungerte som det skulle slik at vi alltid hadde noe å gå tilbake til dersom ting ikke fungerte som det skulle. Vi har vært flinkere til å commite med issuenummer eller evt issuenavnet.
-
-
+Vi har alltid sørget for at alle skulle være oppdatert til enhver tid, og vite hvilken branch som har de nyeste oppdateringene. I tillegg var det også viktig for oss å alltid ha en back-up-branch der all nylig implementert funksjonalitet fungerte som det skulle slik at vi alltid hadde noe å gå tilbake til dersom ting ikke fungerte som det skulle. Vi har vært flinkere til å commite med issuenummer eller evt issuenavnet. Denne gangen lagde vi litt færre brancher enn tidligere og lagde ikke like mange “mergebrancher”. 
 
 # Sources <a name="source"></a>:
 
 * Prosjekt 3: https://gitlab.stud.idi.ntnu.no/it2810-h20/team-42/project-3
+
 
