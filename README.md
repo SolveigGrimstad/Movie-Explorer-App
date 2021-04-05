@@ -1,3 +1,3 @@
 # Movie-Explorer-App
 
-ReadMe finnes i my-App
+ReadMe finnes i my-app
