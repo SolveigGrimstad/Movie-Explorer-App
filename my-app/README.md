@@ -23,10 +23,11 @@ på ulike sider man kan bla seg gjennom. Vi har satt default sorteringen basert 
 rangerte filmene havner øverst. Både søk, filtrering og sortering fungerer om hverandre og man kan gjøre alle operasjonene samtidig dersom man ønsker et mer 
 spesifisert søk. 
 
+<p float="left">
 <img src="home.PNG" alt="Hjem" width="200" />
 <img src="movielib.PNG" alt="Biblotek" width="200" />
 <img src="movieinfo.PNG" alt="Info" width="200" />
-
+</p>
 
 # Teknologi <a name="teknologi"></a>:
 
@@ -56,10 +57,11 @@ Fra tidligere prosjekt har vi hatt en “like” funksjon som vi ønsket å  imp
 Vi har som i prosjekt 3, tatt i bruk Redux til filtrert søk. Men i dette prosjektet var det nødvendig med Redux når det kom til sortert søk også ettersom vi lagde en egen komponent som tok for seg sortering. Vi måtte dermed ha muligheten for å lagre valgt sorteringsform globalt slik at vi fikk hentet ut riktig verdi i backendkallet i movies.tsx filen. 
 Verdiene for filtrering og sortering  blir lagret i store.tsx og ved hjelp av Reducer-funksjoner som ligger i updateGenreFilter.ts blir sorterings og filtreringsverdier oppdatert. Ved å ta i bruk Redux Devtools, som er en extention i Google Chrome, kan vi nå sjekke om sorteringsverdier og filtre som blir krysset av blir lagt i staten.
 
+<p float="left">
 <img src="filter.PNG" alt="Filter" width="200" />
 <img src="sort2.PNG" alt="Sort" width="200" />
 <img src="scroll.PNG" alt="Scroll" width="200" />
-
+</p>
 
 ### Tredjepartskomponenter <a name="komponenter"></a>:
 I dette prosjektet har vi tatt i bruk react-native-paper som tredjepartskomponent til blant annet de ulike "kortene" for å vise hver film. Grunnen til at vi valgte å bruke tredjepartskomponent på visningen av filmene var fordi vi synes dette så mest ryddig ut, og fikk muligheten til å teste tredjepartskomponenter for React native. Dette sparte oss også for mye tid, og vi kunne bruke tiden på å implementere funksjonalitet. En ulempe med at vi brukte tredjepartskomponenter er at når man kjører applikasjonen på f.eks. en iPhone som har nattmodus, endrer fargene seg dynamisk med enhetens innstillinger på nattmodus. 
@@ -69,10 +71,12 @@ Vi har også brukt andre react native pakker til f.eks. searchbar, modal, radiob
 # Testing <a name="Testing"></a>:
 Underveis i prosjektet har vi kjørt applikasjonen på ulike versjoner av iPhone, siden dette er mobilen alle på gruppen har. I tillegg har vi også fått låne ulike versjoner av Android mobiler for å sjekke at alt var som det skulle. Vi har også testet applikasjonen på iPad for å se hvordan de ulike elementene plasserer seg på større enheter. På denne måten forsikret vi oss om at elementene skalerte seg riktig i forhold til ulike skjermstørrelser. 
 
+<p float="left">
 <img src="homeipad.PNG" alt="Hjem ipad" width="200" />
 <img src="movielibipad.PNG" alt="Biblotek ipad" width="200" />
 <img src="movieinfoipad.PNG" alt="Info ipad" width="200" />
 <img src="filteripad.PNG" alt="filter ipad" width="200" />
+</p>
 
 # Installering <a name="Installering"></a>:
 Backenden fra tidligere prosjekt kjører på en virtuell maskin, så det eneste som er nødvendig er å starte frontenden. 
